@@ -4,7 +4,7 @@
 
 ### All-In-One AI Router System — Unified Gateway for 200+ LLM Providers
 
-**One endpoint. Every AI tool. Auto-fallback. Token compression. Cloud sync.**
+**One endpoint. Every AI tool. Auto-fallback. Token compression.**
 
 [![Node](https://img.shields.io/badge/node-%E2%89%A522.22.2-brightgreen?style=flat-square)](package.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
@@ -48,7 +48,6 @@ Golden Router is a **production-grade unified AI gateway** that routes any LLM t
 - **🗜️ RTK + Caveman Compression** — Stack savings: 78–95% token reduction on tool-heavy sessions
 - **🛡️ Resilience Built-In** — Circuit breakers, connection cooldown, model lockout (3 independent layers)
 - **🔌 MCP + A2A Protocols** — 37 MCP tools, JSON-RPC 2.0 A2A, full agent automation
-- **☁️ Cloud Sync (Optional)** — Supabase + Clerk for cross-device sync
 - **🖥️ Multi-Platform** — Web · Desktop (Electron) · PWA · Termux (Android) · Docker
 - **🔒 Local-First & Private** — AES-256-GCM at rest, zero telemetry, 100% open-source
 
@@ -114,21 +113,6 @@ npm install
 npm run build
 npm start
 ```
-
----
-
-## ☁️ Optional Cloud Sync
-
-Golden Router runs **100% locally** by default. To enable cross-device sync, set in `.env.local`:
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
-CLERK_SECRET_KEY=your_clerk_secret
-```
-
-See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the full Supabase schema and Clerk webhook setup.
 
 ---
 

@@ -1,0 +1,33 @@
+{
+  "id": "9router-git-diff",
+  "label": "9Router Git Diff",
+  "description": "Compact unified diff: file headers, hunk-level truncation at 100 lines, +/-/context counting. Ported from 9router.",
+  "category": "git",
+  "priority": 95,
+  "match": {
+    "outputTypes": ["git-diff"],
+    "commands": ["^git\\s+diff\\b"],
+    "patterns": ["^diff --git ", "^@@\\s+-\\d+,\\d+\\s+\\+\\d+,\\d+\\s+@@"]
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": ["^index [0-9a-f]+\\.\\.[0-9a-f]+.*$", "^--- a/", "^\\+\\+\\+ b/"],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 500,
+    "headLines": 100,
+    "tailLines": 50
+  },
+  "preserve": {
+    "errorPatterns": ["^diff --git ", "^@@ ", "^[+-](?![+-]{2})"],
+    "summaryPatterns": []
+  },
+  "tests": [
+    {
+      "name": "basic diff",
+      "command": "git diff",
+      "input": "diff --git a/file.ts b/file.ts\nindex abc123..def456 100644\n--- a/file.ts\n+++ b/file.ts\n@@ -1,5 +1,5 @@\n const x = 1;\n-const y = 2;\n+const y = 3;\n const z = 4;\n",
+      "expected": "file.ts\n  @@ -1,5 +1,5 @@\n   const x = 1;\n  -const y = 2;\n  +const y = 3;\n   const z = 4;\n  +1 -1"
+    }
+  ]
+}

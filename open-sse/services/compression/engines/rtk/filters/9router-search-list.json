@@ -1,0 +1,33 @@
+{
+  "id": "9router-search-list",
+  "label": "9Router Search List",
+  "description": "Compact Cursor Glob search list output. Groups by parent dir like find, shows basenames. Ported from 9router.",
+  "category": "editor",
+  "priority": 87,
+  "match": {
+    "outputTypes": ["search-list"],
+    "commands": [],
+    "patterns": ["^Result of search in '\\(total \\d+ files?\\):"]
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": [],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 100,
+    "headLines": 30,
+    "tailLines": 10
+  },
+  "preserve": {
+    "errorPatterns": [],
+    "summaryPatterns": ["files in", "dirs:", "\\+\\d+ more"]
+  },
+  "tests": [
+    {
+      "name": "search list",
+      "command": "search",
+      "input": "Result of search in 'src' (total 3 files):\n- src/file1.ts\n- src/file2.ts\n- test/test.ts\n",
+      "expected": "Result of search in 'src' (total 3 files):\n3 files in 2 dirs:\n\nsrc/ (2):\n  file1.ts\n  file2.ts\n\ntest/ (1):\n  test.ts"
+    }
+  ]
+}

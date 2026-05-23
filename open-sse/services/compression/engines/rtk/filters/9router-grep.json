@@ -1,0 +1,33 @@
+{
+  "id": "9router-grep",
+  "label": "9Router Grep",
+  "description": "Group grep output by file, show basenames, cap 10 matches per file. Ported from 9router.",
+  "category": "shell",
+  "priority": 92,
+  "match": {
+    "outputTypes": ["grep"],
+    "commands": ["^grep\\b", "^rg\\b"],
+    "patterns": ["^.+:\\d+:.+"]
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": [],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 100,
+    "headLines": 30,
+    "tailLines": 10
+  },
+  "preserve": {
+    "errorPatterns": [],
+    "summaryPatterns": ["matches in", "\\[file\\]"]
+  },
+  "tests": [
+    {
+      "name": "basic grep",
+      "command": "grep",
+      "input": "file.ts:10:console.log('hello')\nfile.ts:20:console.log('world')\nother.ts:5:console.log('test')\n",
+      "expected": "2 matches in 2F:\n\n[file] file.ts (2):\n   10: console.log('hello')\n   20: console.log('world')\n\n[file] other.ts (1):\n    5: console.log('test')"
+    }
+  ]
+}

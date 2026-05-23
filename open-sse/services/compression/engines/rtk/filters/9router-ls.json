@@ -1,0 +1,33 @@
+{
+  "id": "9router-ls",
+  "label": "9Router LS",
+  "description": "Compact ls -la output: dirs with trailing slash, files with human sizes, extension summary. Ported from 9router.",
+  "category": "shell",
+  "priority": 90,
+  "match": {
+    "outputTypes": ["ls"],
+    "commands": ["^ls\\b"],
+    "patterns": ["^total \\d+$", "^[-dlbcps][rwx-]{9}"]
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": ["^total "],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 100,
+    "headLines": 30,
+    "tailLines": 10
+  },
+  "preserve": {
+    "errorPatterns": [],
+    "summaryPatterns": ["Summary:", "files,", "dirs,", "\\(\\d+ "]
+  },
+  "tests": [
+    {
+      "name": "basic ls",
+      "command": "ls -la",
+      "input": "total 8\ndrwxr-xr-x  2 user group 4096 Jan  1 00:00 .\ndrwxr-xr-x 10 user group 4096 Jan  1 00:00 ..\n-rw-r--r--  1 user group  123 Jan  1 00:00 file.ts\n",
+      "expected": "./\n../\nfile.ts  123B\n\nSummary: 1 files, 2 dirs (1 no ext)"
+    }
+  ]
+}

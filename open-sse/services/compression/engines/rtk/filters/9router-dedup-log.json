@@ -1,0 +1,33 @@
+{
+  "id": "9router-dedup-log",
+  "label": "9Router Dedup Log",
+  "description": "Generic fallback: collapse consecutive duplicate lines + blank-line dedupe + hard line cap at 2000. Ported from 9router.",
+  "category": "generic",
+  "priority": 80,
+  "match": {
+    "outputTypes": ["generic-output"],
+    "commands": [],
+    "patterns": []
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": [],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 2000,
+    "headLines": 100,
+    "tailLines": 50
+  },
+  "preserve": {
+    "errorPatterns": [],
+    "summaryPatterns": ["duplicate lines", "truncated at"]
+  },
+  "tests": [
+    {
+      "name": "duplicate lines",
+      "command": "generic",
+      "input": "line1\nline1\nline1\nline2\nline2\nline3\n",
+      "expected": "line1\n  ... (2 duplicate lines)\nline2\n  ... (1 duplicate lines)\nline3"
+    }
+  ]
+}

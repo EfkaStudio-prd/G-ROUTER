@@ -1,0 +1,46 @@
+{
+  "id": "9router-git-status",
+  "label": "9Router Git Status",
+  "description": "Format status output: branch, staged/modified/untracked counts with file lists capped at 10. Ported from 9router.",
+  "category": "git",
+  "priority": 94,
+  "match": {
+    "outputTypes": ["git-status"],
+    "commands": ["^git\\s+status\\b"],
+    "patterns": [
+      "^On branch ",
+      "^nothing to commit",
+      "^Changes (not |to be )",
+      "^Untracked files:",
+      "^[ MADRCU?!][ MADRCU?!] "
+    ]
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": [],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 50,
+    "headLines": 20,
+    "tailLines": 10
+  },
+  "preserve": {
+    "errorPatterns": [],
+    "summaryPatterns": [
+      "\\* ",
+      "\\+ Staged:",
+      "~ Modified:",
+      "\\? Untracked:",
+      "conflicts:",
+      "clean"
+    ]
+  },
+  "tests": [
+    {
+      "name": "basic status",
+      "command": "git status",
+      "input": "On branch main\nChanges not staged for commit:\n  modified:   file.ts\nUntracked files:\n  newfile.ts\n",
+      "expected": "* main\n~ Modified: 1 files\n   file.ts\n? Untracked: 1 files\n   newfile.ts"
+    }
+  ]
+}

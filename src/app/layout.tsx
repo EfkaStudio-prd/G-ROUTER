@@ -7,7 +7,6 @@ import { RTL_LOCALES } from "@/i18n/config";
 import { getSettings } from "@/lib/db/settings";
 import type { Viewport } from "next";
 import { PwaRegister } from "@/shared/components/PwaRegister";
-import { ClerkAuthProvider } from "@/app/providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -92,9 +91,7 @@ export default async function RootLayout({ children }) {
         </a>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <PwaRegister />
-          <ClerkAuthProvider>
-            <ThemeProvider>{children}</ThemeProvider>
-          </ClerkAuthProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

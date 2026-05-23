@@ -1,0 +1,33 @@
+{
+  "id": "9router-smart-truncate",
+  "label": "9Router Smart Truncate",
+  "description": "Keep HEAD + TAIL lines, replace middle with truncation marker. Last resort for large blobs. Ported from 9router.",
+  "category": "generic",
+  "priority": 70,
+  "match": {
+    "outputTypes": ["generic-output"],
+    "commands": [],
+    "patterns": []
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": [],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 250,
+    "headLines": 120,
+    "tailLines": 60
+  },
+  "preserve": {
+    "errorPatterns": [],
+    "summaryPatterns": ["lines truncated"]
+  },
+  "tests": [
+    {
+      "name": "large blob",
+      "command": "generic",
+      "input": "line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\nline9\nline10\n",
+      "expected": "line1\nline2\nline3\nline4\nline5\n... +5 lines truncated\nline9\nline10"
+    }
+  ]
+}

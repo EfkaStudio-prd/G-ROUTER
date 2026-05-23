@@ -1,0 +1,55 @@
+{
+  "id": "9router-build-output",
+  "label": "9Router Build Output",
+  "description": "Compress build tool output (npm, cargo, pip, maven, gradle). Keeps errors, warnings, final summary. Strips progress logs. Ported from 9router.",
+  "category": "build",
+  "priority": 93,
+  "match": {
+    "outputTypes": ["build-output"],
+    "commands": ["^(npm|yarn|pnpm|cargo|pip|poetry|mvn|gradle)\\b"],
+    "patterns": [
+      "^npm (warn|error|ERR!)",
+      "^yarn (warn|error)",
+      "\\s*Compiling\\s+",
+      "\\s*Downloading\\s+",
+      "added \\d+ package",
+      "\\[ERROR\\]",
+      "BUILD (SUCCESS|FAILED)"
+    ]
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": ["\\s*Compiling\\s+", "\\s*Downloading\\s+", "^Fetching\\s+"],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 100,
+    "headLines": 30,
+    "tailLines": 20
+  },
+  "preserve": {
+    "errorPatterns": [
+      "^npm (ERR!|error)",
+      "^yarn error",
+      "^error",
+      "^ERROR:",
+      "\\[ERROR\\]",
+      "BUILD FAILED",
+      "^warning",
+      "\\[WARNING\\]"
+    ],
+    "summaryPatterns": [
+      "added \\d+ package",
+      "^BUILD SUCCESS",
+      "^Successfully (installed|built)",
+      "^\\d+ (vulnerabilities|packages?)"
+    ]
+  },
+  "tests": [
+    {
+      "name": "npm build",
+      "command": "npm run build",
+      "input": "npm warn deprecated package\nCompiling src/index.ts\nadded 123 packages\nBuild SUCCESS\n",
+      "expected": "npm warn deprecated package\nCompiled packages\nBuild SUCCESS"
+    }
+  ]
+}

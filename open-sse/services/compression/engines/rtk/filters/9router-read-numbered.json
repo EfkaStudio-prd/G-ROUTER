@@ -1,0 +1,33 @@
+{
+  "id": "9router-read-numbered",
+  "label": "9Router Read Numbered",
+  "description": "Handles Cursor/Codex read_file output with line numbers. Keep head+tail, drop middle. Ported from 9router.",
+  "category": "editor",
+  "priority": 88,
+  "match": {
+    "outputTypes": ["read-file"],
+    "commands": [],
+    "patterns": ["^\\s*\\d+\\|"]
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": [],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 250,
+    "headLines": 120,
+    "tailLines": 60
+  },
+  "preserve": {
+    "errorPatterns": [],
+    "summaryPatterns": ["lines truncated", "file continues"]
+  },
+  "tests": [
+    {
+      "name": "numbered file",
+      "command": "read_file",
+      "input": "  1|line1\n  2|line2\n  3|line3\n  4|line4\n  5|line5\n",
+      "expected": "  1|line1\n  2|line2\n... +3 lines truncated (file continues)\n  5|line5"
+    }
+  ]
+}

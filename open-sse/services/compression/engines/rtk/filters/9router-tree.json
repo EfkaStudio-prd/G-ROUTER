@@ -1,0 +1,33 @@
+{
+  "id": "9router-tree",
+  "label": "9Router Tree",
+  "description": "Remove tree summary line and trailing blanks, cap at 200 lines. Ported from 9router.",
+  "category": "shell",
+  "priority": 89,
+  "match": {
+    "outputTypes": ["tree"],
+    "commands": ["^tree\\b"],
+    "patterns": ["[├└]──", "│  "]
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": ["director", "file"],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 200,
+    "headLines": 100,
+    "tailLines": 50
+  },
+  "preserve": {
+    "errorPatterns": [],
+    "summaryPatterns": []
+  },
+  "tests": [
+    {
+      "name": "basic tree",
+      "command": "tree",
+      "input": ".\n├── src\n│   └── file.ts\n└── test\n5 directories, 23 files\n",
+      "expected": ".\n├── src\n│   └── file.ts\n└── test"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "9router-find",
+  "label": "9Router Find",
+  "description": "Group find output by parent dir, show basenames, cap 10/dir and 20 dirs total. Ported from 9router.",
+  "category": "shell",
+  "priority": 91,
+  "match": {
+    "outputTypes": ["find"],
+    "commands": ["^find\\b"],
+    "patterns": ["^[^:]+$"]
+  },
+  "rules": {
+    "includePatterns": [],
+    "dropPatterns": [],
+    "collapsePatterns": ["^\\s*$"],
+    "deduplicate": true,
+    "maxLines": 100,
+    "headLines": 30,
+    "tailLines": 10
+  },
+  "preserve": {
+    "errorPatterns": [],
+    "summaryPatterns": ["files in", "dirs:", "\\+\\d+ more"]
+  },
+  "tests": [
+    {
+      "name": "basic find",
+      "command": "find",
+      "input": "src/file1.ts\nsrc/file2.ts\ntest/test.ts\n",
+      "expected": "3 files in 2 dirs:\n\nsrc/ (2):\n  file1.ts\n  file2.ts\n\ntest/ (1):\n  test.ts"
+    }
+  ]
+}

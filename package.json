@@ -1,7 +1,7 @@
 {
   "name": "golden-router",
   "version": "3.8.2",
-  "description": "Golden Router - All In One Best Number 1 Router System. Unified AI gateway with 177+ providers, RTK+Caveman compression, auto fallback, cloud sync, MCP/A2A, desktop, PWA, and OpenAI-compatible APIs.",
+  "description": "Golden Router - All-In-One AI Router System. Unified AI gateway with 200+ providers, RTK+Caveman compression, auto fallback, MCP/A2A, desktop, PWA, and OpenAI-compatible APIs.",
   "type": "module",
   "bin": {
     "golden-router": "bin/omniroute.mjs",
@@ -9,40 +9,20 @@
   },
   "files": [
     "bin/",
-    "app/",
-    "src/lib/cli-helper/",
-    "@omniroute/",
-    "open-sse/mcp-server/index.ts",
-    "open-sse/mcp-server/server.ts",
-    "open-sse/mcp-server/httpTransport.ts",
-    "open-sse/mcp-server/audit.ts",
-    "open-sse/mcp-server/runtimeHeartbeat.ts",
-    "open-sse/mcp-server/scopeEnforcement.ts",
-    "open-sse/mcp-server/schemas/",
-    "open-sse/mcp-server/tools/",
-    "open-sse/mcp-server/README.md",
-    "src/shared/contracts/",
-    "src/shared/utils/nodeRuntimeSupport.ts",
+    "src/",
+    "open-sse/",
     ".env.example",
-    "scripts/build/postinstall.mjs",
-    "bin/cli/runtime/",
-    "scripts/postinstall.mjs",
-    "scripts/build/postinstallSupport.mjs",
-    "scripts/build/sync-env.mjs",
-    "scripts/dev/responses-ws-proxy.mjs",
-    "scripts/check/check-supported-node-runtime.ts",
-    "scripts/dev/sync-env.mjs",
-    "scripts/build/native-binary-compat.mjs",
-    "scripts/build/build-next-isolated.mjs",
     "README.md",
     "LICENSE"
-  ],
-  "workspaces": [
-    "open-sse"
   ],
   "engines": {
     "node": ">=22.22.3 <23 || >=24.0.0 <27"
   },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
   "keywords": [
     "ai",
     "router",
@@ -59,15 +39,16 @@
     "auto-fallback",
     "golden-router",
     "compression",
-    "cloud-sync"
+    "mcp",
+    "a2a"
   ],
   "license": "MIT",
-  "author": "Dwi",
+  "author": "EfkaStudio",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dwi/golden-router"
+    "url": "https://github.com/EfkaStudio-prd/G-ROUTER"
   },
-  "homepage": "https://github.com/dwi/golden-router",
+  "homepage": "https://github.com/EfkaStudio-prd/G-ROUTER#readme",
   "scripts": {
     "dev": "node scripts/dev/run-next.mjs dev",
     "prebuild:docs": "node scripts/docs/generate-docs-index.mjs && node scripts/docs/gen-openapi-module.mjs",

@@ -108,8 +108,8 @@ REDIS_URL=redis://localhost:6379
 # ═══════════════════════════════════════════════════════════════════════════════
 PORT=20128
 GOLDENROUTER_USE_TURBOPACK=1
+"@" | Out-File -FilePath $envFile -Encoding UTF8
 
-    
     Write-Host "[OK] Secrets generated and saved to .env.local" -ForegroundColor Green
     Write-Host "  IMPORTANT: Change INITIAL_PASSWORD before first use!" -ForegroundColor Yellow
 } else {

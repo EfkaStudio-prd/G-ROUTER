@@ -24,32 +24,7 @@ import { register_cloud } from "./cloud.mjs";
 import { register_fallback } from "./fallback.mjs";
 import { register_telemetry } from "./telemetry.mjs";
 
-export const API_TAGS = [
-  "chat",
-  "messages",
-  "responses",
-  "embeddings",
-  "images",
-  "audio",
-  "moderations",
-  "rerank",
-  "system",
-  "models",
-  "providers",
-  "provider-nodes",
-  "api-keys",
-  "combos",
-  "settings",
-  "compression",
-  "usage",
-  "pricing",
-  "translator",
-  "cli-tools",
-  "oauth",
-  "cloud",
-  "fallback",
-  "telemetry",
-];
+export const API_TAGS = ["chat","messages","responses","embeddings","images","audio","moderations","rerank","system","models","providers","provider-nodes","api-keys","combos","settings","compression","usage","pricing","translator","cli-tools","oauth","cloud","fallback","telemetry"];
 
 export function registerApiCommands(program) {
   const api = program
@@ -58,9 +33,7 @@ export function registerApiCommands(program) {
   api
     .command("tags")
     .description("List available API tag groups")
-    .action(() => {
-      API_TAGS.forEach((t) => console.log(t));
-    });
+    .action(() => { API_TAGS.forEach((t) => console.log(t)); });
   register_chat(api);
   register_messages(api);
   register_responses(api);
